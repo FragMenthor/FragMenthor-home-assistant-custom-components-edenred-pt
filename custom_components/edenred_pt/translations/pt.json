@@ -7,7 +7,7 @@
         "data": {
           "email": "Email",
           "password": "Password",
-          "interval": "Intervalo (minutos)"
+          "interval": "Intervalo de atualização (minutos)"
         }
       }
     }
