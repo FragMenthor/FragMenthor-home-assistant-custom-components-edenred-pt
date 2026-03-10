@@ -1,12 +1,11 @@
-
 from homeassistant.components.sensor import SensorEntity
-from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
 from .const import DOMAIN
+import re
 
 
-async def async_setup_entry(hass: HomeAssistant, entry, async_add_entities):
+async def async_setup_entry(hass, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
     coordinator = data["coordinator"]
 
@@ -52,30 +51,27 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         return None
 
     @property
-        def extra_state_attributes(self):
-            mov = self.coordinator.data[self.card_id]["details"].get("movementList", [])
-            if not mov:
-                return None
-    
-            m = mov[0]
-            cat = m.get("category") or {}
-    
-            # --- Limpeza de texto ---
-            raw_desc = m.get("transactionName", "")
-    
-            # 1) remover “Compra:”
-            clean_desc = raw_desc
-            if clean_desc.lower().startswith("compra:"):
-                clean_desc = clean_desc[7:]  # remover prefixo
-            clean_desc = clean_desc.strip()
-    
-            # 2) remover espaços repetidos
-            import re
-            clean_desc = re.sub(r"\s+", " ", clean_desc)
-    
-            return {
-                "date": m.get("transactionDate"),
-                "description": clean_desc,
-                "category": cat.get("description"),
-                "balance_after": m.get("balance"),
-            }
+    def extra_state_attributes(self):
+        mov = self.coordinator.data[self.card_id]["details"].get("movementList", [])
+        if not mov:
+            return None
+
+        m = mov[0]
+        category = (m.get("category") or {}).get("description")
+
+        # --- LIMPEZA DO TEXTO DO DESCRITIVO ---
+        raw = m.get("transactionName", "")
+
+        # 1) remover prefixo "Compra:" (case-insensitive)
+        if raw.lower().startswith("compra:"):
+            raw = raw[7:]
+
+        # 2) remover espaços repetidos
+        raw = re.sub(r"\s+", " ", raw).strip()
+
+        return {
+            "date": m.get("transactionDate"),
+            "description": raw,
+            "category": category,
+            "balance_after": m.get("balance"),
+        }
