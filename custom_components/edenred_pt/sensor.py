@@ -1,22 +1,18 @@
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
-
 from .const import DOMAIN
 import re
-
 
 async def async_setup_entry(hass, entry, async_add_entities):
     data = hass.data[DOMAIN][entry.entry_id]
     coordinator = data["coordinator"]
 
     entities = []
-
     for card_id in coordinator.data.keys():
         entities.append(EdenredBalanceSensor(coordinator, card_id))
         entities.append(EdenredLastMovementSensor(coordinator, card_id))
 
     async_add_entities(entities)
-
 
 class EdenredBalanceSensor(CoordinatorEntity, SensorEntity):
     _attr_icon = "mdi:credit-card"
@@ -31,7 +27,6 @@ class EdenredBalanceSensor(CoordinatorEntity, SensorEntity):
     @property
     def native_value(self):
         return self.coordinator.data[self.card_id]["details"]["account"]["availableBalance"]
-
 
 class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
     _attr_icon = "mdi:swap-horizontal"
@@ -59,14 +54,11 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         m = mov[0]
         category = (m.get("category") or {}).get("description")
 
-        # --- LIMPEZA DO TEXTO DO DESCRITIVO ---
         raw = m.get("transactionName", "")
 
-        # 1) remover prefixo "Compra:" (case-insensitive)
         if raw.lower().startswith("compra:"):
             raw = raw[7:]
 
-        # 2) remover espaços repetidos
         raw = re.sub(r"\s+", " ", raw).strip()
 
         return {
