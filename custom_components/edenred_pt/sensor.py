@@ -51,31 +51,31 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
             return mov[0]["amount"]
         return None
 
-@property
-    def extra_state_attributes(self):
-        mov = self.coordinator.data[self.card_id]["details"].get("movementList", [])
-        if not mov:
-            return None
-
-        m = mov[0]
-        cat = m.get("category") or {}
-
-        # --- Limpeza de texto ---
-        raw_desc = m.get("transactionName", "")
-
-        # 1) remover “Compra:”
-        clean_desc = raw_desc
-        if clean_desc.lower().startswith("compra:"):
-            clean_desc = clean_desc[7:]  # remover prefixo
-        clean_desc = clean_desc.strip()
-
-        # 2) remover espaços repetidos
-        import re
-        clean_desc = re.sub(r"\s+", " ", clean_desc)
-
-        return {
-            "date": m.get("transactionDate"),
-            "description": clean_desc,
-            "category": cat.get("description"),
-            "balance_after": m.get("balance"),
-        }
+    @property
+        def extra_state_attributes(self):
+            mov = self.coordinator.data[self.card_id]["details"].get("movementList", [])
+            if not mov:
+                return None
+    
+            m = mov[0]
+            cat = m.get("category") or {}
+    
+            # --- Limpeza de texto ---
+            raw_desc = m.get("transactionName", "")
+    
+            # 1) remover “Compra:”
+            clean_desc = raw_desc
+            if clean_desc.lower().startswith("compra:"):
+                clean_desc = clean_desc[7:]  # remover prefixo
+            clean_desc = clean_desc.strip()
+    
+            # 2) remover espaços repetidos
+            import re
+            clean_desc = re.sub(r"\s+", " ", clean_desc)
+    
+            return {
+                "date": m.get("transactionDate"),
+                "description": clean_desc,
+                "category": cat.get("description"),
+                "balance_after": m.get("balance"),
+            }
