@@ -1,5 +1,6 @@
+
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import HomeAssistant
+from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 from datetime import timedelta
 import logging
@@ -13,7 +14,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     email = entry.data[CONF_EMAIL]
     password = entry.data[CONF_PASSWORD]
 
-    # Use options if available
     interval = entry.options.get(CONF_INTERVAL, entry.data.get(CONF_INTERVAL, 60))
 
     client = EdenredClient(email, password)
@@ -22,7 +22,6 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         try:
             await client.authenticate()
             card_list = await client.get_cards()
-
             results = {}
             for card in card_list.get("data", []):
                 card_id = card["id"]
@@ -31,9 +30,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
                     "card": card,
                     "details": details.get("data", {})
                 }
-
             return results
-
         except Exception as err:
             raise UpdateFailed(f"Erro ao atualizar: {err}")
 
@@ -52,6 +49,12 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
         "client": client,
         "coordinator": coordinator,
     }
+
+    async def handle_force_update(call: ServiceCall):
+        _LOGGER.info("Forçando atualização manual da integração Edenred PT…")
+        await coordinator.async_request_refresh()
+
+    hass.services.async_register(DOMAIN, "force_update", handle_force_update)
 
     await hass.config_entries.async_forward_entry_setups(entry, ["sensor"])
     return True
