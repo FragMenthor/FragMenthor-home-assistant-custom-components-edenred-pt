@@ -1,0 +1,12 @@
+{
+  "domain": "edenred_pt",
+  "name": "Edenred Portugal",
+  "version": "1.0.0",
+  "documentation": "https://github.com/FragMenthor/home-assistant-custom-components-edenred_pt",
+  "requirements": [],
+  "codeowners": [
+    "@FragMenthor"
+  ],
+  "iot_class": "cloud_polling",
+  "config_flow": true
+}
