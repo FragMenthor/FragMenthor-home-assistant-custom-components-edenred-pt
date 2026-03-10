@@ -1,5 +1,5 @@
 
-# 🇵🇹 Edenred Portugal — Home Assistant Integration
+# Edenred 🇵🇹 — Home Assistant Integration
 
 ![HACS Badge](https://img.shields.io/badge/HACS-Custom-orange.svg)
 ![License](https://img.shields.io/github/license/FragMenthor/home-assistant-custom-components-edenred-pt)
