@@ -1,5 +1,5 @@
 
-# Edenred 🇵🇹 — Home Assistant Integration
+# Edenred PT — Integração para Home Assistant
 
 ![HACS Badge](https://img.shields.io/badge/HACS-Custom-orange.svg)
 ![License](https://img.shields.io/github/license/FragMenthor/home-assistant-custom-components-edenred-pt)
@@ -10,7 +10,7 @@ Integração para obter saldos e movimentos dos cartões **Edenred Portugal** di
 ## ✨ Funcionalidades
 
 - Login com autenticação oficial da Edenred
-- Token armazenado em memória (nunca no disco)
+- Token temporário armazenado em memória
 - Suporte para **vários cartões**
 - Atualização configurável: **15 min a 12 horas**
 - Sensor de saldo por cartão
