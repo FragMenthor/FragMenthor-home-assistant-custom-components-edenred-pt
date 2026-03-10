@@ -1,4 +1,3 @@
-
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
@@ -10,17 +9,17 @@ from .api import EdenredClient
 
 _LOGGER = logging.getLogger(__name__)
 
-
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     email = entry.data[CONF_EMAIL]
     password = entry.data[CONF_PASSWORD]
-    interval = entry.data[CONF_INTERVAL]
+
+    # Use options if available
+    interval = entry.options.get(CONF_INTERVAL, entry.data.get(CONF_INTERVAL, 60))
 
     client = EdenredClient(email, password)
 
     async def async_update():
         try:
-            # Reautentica em cada ciclo para garantir token válido
             await client.authenticate()
             card_list = await client.get_cards()
 
@@ -28,14 +27,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
             for card in card_list.get("data", []):
                 card_id = card["id"]
                 details = await client.get_card_details(card_id)
-
                 results[card_id] = {
                     "card": card,
                     "details": details.get("data", {})
                 }
 
-            if not results:
-                _LOGGER.warning("Nenhum cartão retornado pela API")
             return results
 
         except Exception as err:
@@ -58,9 +54,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry):
     }
 
     await hass.config_entries.async_forward_entry_setups(entry, ["sensor"])
-
     return True
-
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry):
     unload = await hass.config_entries.async_unload_platforms(entry, ["sensor"])
