@@ -1,0 +1,15 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Edenred Portugal",
+        "description": "Enter your credentials",
+        "data": {
+          "email": "Email",
+          "password": "Password",
+          "interval": "Update interval (minutes)"
+        }
+      }
+    }
+  }
+}
