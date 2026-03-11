@@ -46,24 +46,43 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         return None
 
     @property
-    def extra_state_attributes(self):
-        mov = self.coordinator.data[self.card_id]["details"].get("movementList", [])
-        if not mov:
-            return None
-
-        m = mov[0]
-        category = (m.get("category") or {}).get("description")
-
-        raw = m.get("transactionName", "")
-
-        if raw.lower().startswith("compra:"):
-            raw = raw[7:]
-
-        raw = re.sub(r"\s+", " ", raw).strip()
-
-        return {
-            "date": m.get("transactionDate"),
-            "description": raw,
-            "category": category,
-            "balance_after": m.get("balance"),
-        }
+        def extra_state_attributes(self):
+            mov_list = self.coordinator.data[self.card_id]["details"].get("movementList", [])
+            if not mov_list:
+                return None
+    
+            # Movimento mais recente
+            m = mov_list[0]
+            category = (m.get("category") or {}).get("description")
+    
+            # --- limpar descrição do último movimento ---
+            raw = m.get("transactionName", "")
+            if raw.lower().startswith("compra:"):
+                raw = raw[7:]
+            raw = re.sub(r"\s+", " ", raw).strip()
+    
+            # --- construir lista completa de movimentos formatada ---
+            all_movements = []
+            for mov in mov_list:
+                desc = mov.get("transactionName", "")
+                if desc.lower().startswith("compra:"):
+                    desc = desc[7:]
+                desc = re.sub(r"\s+", " ", desc).strip()
+    
+                all_movements.append({
+                    "data": mov.get("transactionDate"),
+                    "descricao": desc,
+                    "valor": mov.get("amount"),
+                    "categoria": (mov.get("category") or {}).get("description"),
+                    "saldo_final": mov.get("balance"),
+                })
+    
+            return {
+                # movimento mais recente
+                "data": m.get("transactionDate"),
+                "descricao": raw,
+                "categoria": category,
+                "saldo_final": m.get("balance"),
+                # lista completa nova!
+                "movimentos": all_movements
+            }
