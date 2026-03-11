@@ -42,7 +42,7 @@ Para cada cartão são criados dois sensores:
 - `sensor.edenred_<id>_ultimo_movimento`
 
 Atributos do último movimento:
-- `date`, `description`, `category`, `balance_after`
+- `date`, `description`, `category`, `balance_after` e `movements`
 
 ## 📜 Licença
 
