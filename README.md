@@ -13,7 +13,7 @@ Integração para obter saldos e movimentos dos cartões **Edenred Portugal** di
 
 ## ✨ Funcionalidades
 
-- Login com autenticação por API NÃO OFICIAL da Edenred
+- Login com autenticação por **API NÃO OFICIAL** da Edenred
 - Token temporário armazenado em memória
 - Suporte para **vários cartões**
 - Atualização configurável: **15 min a 12 horas**
