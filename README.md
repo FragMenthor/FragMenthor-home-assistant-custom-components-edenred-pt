@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/refs/heads/main/custom_components/edenred_pt/icon.png" alt="Edenred Portugal" width="500">
+  <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/refs/heads/main/custom_components/edenred_pt/icon.png" alt="Edenred Portugal" width="128">
 </p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/main/custom_components/edenred_pt/logo.png" alt="Edenred Portugal" width="500">
