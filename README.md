@@ -18,7 +18,7 @@ Integração para obter saldos e movimentos dos cartões **Edenred Portugal** di
 - Suporte para **vários cartões**
 - Atualização configurável: **15 min a 12 horas**
 - Sensor de saldo por cartão
-- Sensor de último movimento (com atributos completos)
+- Sensor de último movimento (com atributos completos) e lista de movimentos
 - Compatível com **HACS (Custom Repo)**
 
 ## 📦 Instalação via HACS
