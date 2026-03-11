@@ -16,7 +16,7 @@ Integração para obter saldos e movimentos dos cartões **Edenred Portugal** di
 - Login com autenticação por **API NÃO OFICIAL** da Edenred
 - Token temporário armazenado em memória
 - Suporte para **vários cartões**
-- Atualização configurável: **15 min a 12 horas**
+- Atualização configurável (e reconfigurável): **15 min a 12 horas**
 - Sensor de saldo por cartão
 - Sensor de último movimento (com atributos completos e histórico de movimentos)
 - Compatível com **HACS (Custom Repo)**
