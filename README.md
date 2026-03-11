@@ -2,9 +2,7 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/main/custom_components/edenred_pt/logo.png" alt="Edenred Portugal" width="500">
 </p>
-
 <br>
-
 # Edenred PT — Integração para Home Assistant
 
 ![HACS Badge](https://img.shields.io/badge/HACS-Custom-orange.svg)
