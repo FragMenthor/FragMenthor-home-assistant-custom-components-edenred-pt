@@ -1,7 +1,7 @@
 {
   "domain": "edenred_pt",
   "name": "Edenred Portugal",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "documentation": "https://github.com/FragMenthor/home-assistant-custom-components-edenred_pt",
   "requirements": [],
   "codeowners": [
