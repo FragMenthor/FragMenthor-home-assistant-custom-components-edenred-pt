@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 from datetime import datetime
 from typing import Any
 
@@ -87,6 +88,10 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         # Movimento mais recente
         latest = mov_list[0]
 
+        # Categoria e abreviatura (cat) do último movimento
+        latest_category = (latest.get("category") or {}).get("description")
+        latest_cat = self._cat_abbrev(latest_category)
+
         # Parse e formatação de data/hora para o último movimento
         latest_dt = self._parse_transaction_dt(latest.get("transactionDate"))
         latest_formats = self._format_dt(latest_dt)
@@ -97,6 +102,9 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         # Lista completa formatada
         movements: list[dict[str, Any]] = []
         for mov in mov_list:
+            mov_category = (mov.get("category") or {}).get("description")
+            mov_cat = self._cat_abbrev(mov_category)
+
             mov_dt = self._parse_transaction_dt(mov.get("transactionDate"))
             mov_formats = self._format_dt(mov_dt)
 
@@ -105,16 +113,19 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
                     # raw original (mantido)
                     "transactionDate": mov.get("transactionDate"),
 
-                    # novos campos pedidos
+                    # data/hora formatados
                     "data": mov_formats["data"],
                     "hora": mov_formats["hora"],
                     "data_hora": mov_formats["data_hora"],
-                    "timestamp": mov_formats["timestamp"],  # ✅ NOVO
+                    "timestamp": mov_formats["timestamp"],
 
-                    # existentes
+                    # categoria + abreviatura
+                    "category": mov_category,
+                    "cat": mov_cat,
+
+                    # restantes
                     "description": self._clean_description(mov.get("transactionName", "")),
                     "amount": mov.get("amount"),
-                    "category": (mov.get("category") or {}).get("description"),
                     "balance_after": mov.get("balance"),
                 }
             )
@@ -123,15 +134,18 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
             # raw original (mantido)
             "transactionDate": latest.get("transactionDate"),
 
-            # novos campos pedidos (último movimento)
+            # data/hora
             "data": latest_formats["data"],
             "hora": latest_formats["hora"],
             "data_hora": latest_formats["data_hora"],
-            "timestamp": latest_formats["timestamp"],  # ✅ NOVO
+            "timestamp": latest_formats["timestamp"],
 
-            # existentes
+            # categoria + abreviatura
+            "category": latest_category,
+            "cat": latest_cat,
+
+            # restantes
             "description": latest_desc,
-            "category": (latest.get("category") or {}).get("description"),
             "balance_after": latest.get("balance"),
 
             # lista completa
@@ -147,6 +161,33 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         t = re.sub(r"\s+", " ", t).strip()
         return t
 
+    @staticmethod
+    def _remove_accents(text: str) -> str:
+        """Remove acentos de uma string."""
+        normalized = unicodedata.normalize("NFD", text)
+        return "".join(ch for ch in normalized if unicodedata.category(ch) != "Mn")
+
+    @classmethod
+    def _cat_abbrev(cls, category: str | None) -> str | None:
+        """Abreviatura (3 letras) em maiúsculas, SEM acentos.
+        Exceção: 'Crédito' -> 'CRD'
+        """
+        if not category:
+            return None
+
+        c = category.strip()
+        if not c:
+            return None
+
+        # remover acentos e normalizar para uppercase
+        c_norm = cls._remove_accents(c).strip().upper()
+
+        # regra especial
+        if c_norm == "CREDITO":
+            return "CRD"
+
+        return c_norm[:3]
+
     def _parse_transaction_dt(self, value: str | None) -> datetime | None:
         """
         Faz parse do transactionDate vindo da Edenred (ex: 2026-03-08T19:41:50.642+0000)
@@ -159,12 +200,10 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         for fmt in ("%Y-%m-%dT%H:%M:%S.%f%z", "%Y-%m-%dT%H:%M:%S%z"):
             try:
                 dt = datetime.strptime(value, fmt)
-                # Converte para a timezone local definida no HA
                 return dt_util.as_local(dt)
             except ValueError:
                 continue
 
-        # Se falhar o parse, devolve None (não rebenta o sensor)
         return None
 
     @staticmethod
@@ -176,8 +215,7 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         data = dt.strftime("%d-%m-%Y")
         hora = dt.strftime("%H:%M")
         data_hora = f"{data} {hora}"
-
-        # epoch em segundos (int) – formato mais útil no HA
         ts = int(dt.timestamp())
 
         return {"data": data, "hora": hora, "data_hora": data_hora, "timestamp": ts}
+    
