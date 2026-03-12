@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 import re
+from datetime import datetime
 from typing import Any
 
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
+from homeassistant.util import dt as dt_util
 
 from .const import DOMAIN
 
@@ -85,15 +87,31 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         # Movimento mais recente
         latest = mov_list[0]
 
-        # --- Limpeza do texto (remove "Compra:" + espaços repetidos) ---
+        # Parse e formatação de data/hora para o último movimento
+        latest_dt = self._parse_transaction_dt(latest.get("transactionDate"))
+        latest_formats = self._format_dt(latest_dt)
+
+        # Limpeza do texto
         latest_desc = self._clean_description(latest.get("transactionName", ""))
 
         # Lista completa formatada
         movements: list[dict[str, Any]] = []
         for mov in mov_list:
+            mov_dt = self._parse_transaction_dt(mov.get("transactionDate"))
+            mov_formats = self._format_dt(mov_dt)
+
             movements.append(
                 {
-                    "date": mov.get("transactionDate"),
+                    # raw original (mantido)
+                    "transactionDate": mov.get("transactionDate"),
+
+                    # novos campos pedidos
+                    "data": mov_formats["data"],
+                    "hora": mov_formats["hora"],
+                    "data_hora": mov_formats["data_hora"],
+                    "timestamp": mov_formats["timestamp"],  # ✅ NOVO
+
+                    # existentes
                     "description": self._clean_description(mov.get("transactionName", "")),
                     "amount": mov.get("amount"),
                     "category": (mov.get("category") or {}).get("description"),
@@ -102,10 +120,21 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
             )
 
         return {
-            "date": latest.get("transactionDate"),
+            # raw original (mantido)
+            "transactionDate": latest.get("transactionDate"),
+
+            # novos campos pedidos (último movimento)
+            "data": latest_formats["data"],
+            "hora": latest_formats["hora"],
+            "data_hora": latest_formats["data_hora"],
+            "timestamp": latest_formats["timestamp"],  # ✅ NOVO
+
+            # existentes
             "description": latest_desc,
             "category": (latest.get("category") or {}).get("description"),
             "balance_after": latest.get("balance"),
+
+            # lista completa
             "movements": movements,
         }
 
@@ -113,9 +142,42 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
     def _clean_description(text: str) -> str:
         """Remove prefixo 'Compra:' (case-insensitive) e espaços repetidos; trim final."""
         t = text or ""
-        # remover prefixo "Compra:" (com exatidão; sem afetar outros textos)
         if t.lower().startswith("compra:"):
             t = t[7:]
-        # normalizar espaços repetidos
         t = re.sub(r"\s+", " ", t).strip()
         return t
+
+    def _parse_transaction_dt(self, value: str | None) -> datetime | None:
+        """
+        Faz parse do transactionDate vindo da Edenred (ex: 2026-03-08T19:41:50.642+0000)
+        e converte para timezone local do Home Assistant.
+        """
+        if not value:
+            return None
+
+        # Alguns registos podem vir com ou sem milissegundos.
+        for fmt in ("%Y-%m-%dT%H:%M:%S.%f%z", "%Y-%m-%dT%H:%M:%S%z"):
+            try:
+                dt = datetime.strptime(value, fmt)
+                # Converte para a timezone local definida no HA
+                return dt_util.as_local(dt)
+            except ValueError:
+                continue
+
+        # Se falhar o parse, devolve None (não rebenta o sensor)
+        return None
+
+    @staticmethod
+    def _format_dt(dt: datetime | None) -> dict[str, Any]:
+        """Devolve data/hora/data_hora e timestamp (epoch) no formato pedido."""
+        if dt is None:
+            return {"data": None, "hora": None, "data_hora": None, "timestamp": None}
+
+        data = dt.strftime("%d-%m-%Y")
+        hora = dt.strftime("%H:%M")
+        data_hora = f"{data} {hora}"
+
+        # epoch em segundos (int) – formato mais útil no HA
+        ts = int(dt.timestamp())
+
+        return {"data": data, "hora": hora, "data_hora": data_hora, "timestamp": ts}
