@@ -1,4 +1,3 @@
-
 <p align="left">
   <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/main/custom_components/edenred_pt/logo.png" alt="Edenred Portugal" width="500">
 </p>
@@ -6,9 +5,8 @@
 # Edenred PT — Integração para Home Assistant
 
 ![HACS Badge](https://img.shields.io/badge/HACS-Custom-orange.svg)
-![License](https://img.shields.io/github/license/FragMenthor/home-assistant-custom-components-edenred-pt)
-![Release](https://img.shields.io/github/v/release/FragMenthor/home-assistant-custom-components-edenred-pt)
-
+![License](https://img.shields.io/github/license/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt)
+![Release](https://img.shields.io/github/v/release/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt)
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
 
 ## ✨ Funcionalidades
