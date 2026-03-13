@@ -53,7 +53,6 @@ class EdenredBalanceSensor(CoordinatorEntity, SensorEntity):
             "ownerName": card.get("ownerName"),
             "number": card.get("number"),
             "status": card.get("status"),
-            # Evitamos ponto no nome do atributo (não suportado): usamos product_name
             "product_name": product.get("name"),
         }
 
@@ -80,7 +79,7 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
 
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None:
-        """Atributos: data/descrição limpa/categoria/balance_after + lista completa de movimentos."""
+        """Atributos do último movimento + lista completa formatada."""
         mov_list = self.coordinator.data[self.card_id]["details"].get("movementList", [])
         if not mov_list:
             return None
@@ -88,42 +87,50 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
         # Movimento mais recente
         latest = mov_list[0]
 
-        # Categoria e abreviatura (cat) do último movimento
+        # Categoria + abreviatura
         latest_category = (latest.get("category") or {}).get("description")
         latest_cat = self._cat_abbrev(latest_category)
 
-        # Parse e formatação de data/hora para o último movimento
+        # Tipo triangular ▲ / ▼
+        latest_type = self._movement_type(latest.get("amount"))
+
+        # Novo atributo: círculo colorido 🟢 / 🔴
+        latest_t = self._movement_circle(latest.get("amount"))
+
+        # Data/hora
         latest_dt = self._parse_transaction_dt(latest.get("transactionDate"))
         latest_formats = self._format_dt(latest_dt)
 
-        # Limpeza do texto
+        # Texto limpo
         latest_desc = self._clean_description(latest.get("transactionName", ""))
 
         # Lista completa formatada
         movements: list[dict[str, Any]] = []
         for mov in mov_list:
+
             mov_category = (mov.get("category") or {}).get("description")
             mov_cat = self._cat_abbrev(mov_category)
+            mov_type = self._movement_type(mov.get("amount"))
+            mov_t = self._movement_circle(mov.get("amount"))
 
             mov_dt = self._parse_transaction_dt(mov.get("transactionDate"))
             mov_formats = self._format_dt(mov_dt)
 
             movements.append(
                 {
-                    # raw original (mantido)
                     "transactionDate": mov.get("transactionDate"),
 
-                    # data/hora formatados
-                    "data": mov_formats["data"],
-                    "hora": mov_formats["hora"],
-                    "data_hora": mov_formats["data_hora"],
+                    "date": mov_formats["date"],
+                    "time": mov_formats["time"],
+                    "date_time": mov_formats["date_time"],
                     "timestamp": mov_formats["timestamp"],
 
-                    # categoria + abreviatura
                     "category": mov_category,
                     "cat": mov_cat,
 
-                    # restantes
+                    "type": mov_type,   # ▲ / ▼
+                    "t": mov_t,         # 🟢 / 🔴
+
                     "description": self._clean_description(mov.get("transactionName", "")),
                     "amount": mov.get("amount"),
                     "balance_after": mov.get("balance"),
@@ -131,91 +138,83 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
             )
 
         return {
-            # raw original (mantido)
             "transactionDate": latest.get("transactionDate"),
 
-            # data/hora
-            "data": latest_formats["data"],
-            "hora": latest_formats["hora"],
-            "data_hora": latest_formats["data_hora"],
+            "date": latest_formats["date"],
+            "time": latest_formats["time"],
+            "date_time": latest_formats["date_time"],
             "timestamp": latest_formats["timestamp"],
 
-            # categoria + abreviatura
             "category": latest_category,
             "cat": latest_cat,
 
-            # restantes
+            "type": latest_type,  # ▲ / ▼
+            "t": latest_t,        # 🟢 / 🔴
+
             "description": latest_desc,
             "balance_after": latest.get("balance"),
 
-            # lista completa
             "movements": movements,
         }
 
     @staticmethod
     def _clean_description(text: str) -> str:
-        """Remove prefixo 'Compra:' (case-insensitive) e espaços repetidos; trim final."""
         t = text or ""
         if t.lower().startswith("compra:"):
             t = t[7:]
-        t = re.sub(r"\s+", " ", t).strip()
-        return t
+        return re.sub(r"\s+", " ", t).strip()
 
     @staticmethod
     def _remove_accents(text: str) -> str:
-        """Remove acentos de uma string."""
         normalized = unicodedata.normalize("NFD", text)
         return "".join(ch for ch in normalized if unicodedata.category(ch) != "Mn")
 
     @classmethod
     def _cat_abbrev(cls, category: str | None) -> str | None:
-        """Abreviatura (3 letras) em maiúsculas, SEM acentos.
-        Exceção: 'Crédito' -> 'CRD'
-        """
+        """Abreviatura (3 letras) sem acentos; 'Crédito' → 'CRD'."""
         if not category:
             return None
-
-        c = category.strip()
-        if not c:
-            return None
-
-        # remover acentos e normalizar para uppercase
-        c_norm = cls._remove_accents(c).strip().upper()
-
-        # regra especial
+        c_norm = cls._remove_accents(category).strip().upper()
         if c_norm == "CREDITO":
             return "CRD"
+        return c_norm[:3] if c_norm else None
 
-        return c_norm[:3]
+    @staticmethod
+    def _movement_type(amount: float | None) -> str | None:
+        """▲ se positivo / ▼ se negativo."""
+        if amount is None:
+            return None
+        return "▲" if amount > 0 else "▼"
+
+    @staticmethod
+    def _movement_circle(amount: float | None) -> str | None:
+        """🟢 se positivo / 🔴 se negativo."""
+        if amount is None:
+            return None
+        return "🟢" if amount > 0 else "🔴"
 
     def _parse_transaction_dt(self, value: str | None) -> datetime | None:
-        """
-        Faz parse do transactionDate vindo da Edenred (ex: 2026-03-08T19:41:50.642+0000)
-        e converte para timezone local do Home Assistant.
-        """
         if not value:
             return None
-
-        # Alguns registos podem vir com ou sem milissegundos.
         for fmt in ("%Y-%m-%dT%H:%M:%S.%f%z", "%Y-%m-%dT%H:%M:%S%z"):
             try:
                 dt = datetime.strptime(value, fmt)
                 return dt_util.as_local(dt)
             except ValueError:
                 continue
-
         return None
 
     @staticmethod
     def _format_dt(dt: datetime | None) -> dict[str, Any]:
-        """Devolve data/hora/data_hora e timestamp (epoch) no formato pedido."""
         if dt is None:
-            return {"data": None, "hora": None, "data_hora": None, "timestamp": None}
+            return {"date": None, "time": None, "date_time": None, "timestamp": None}
 
         data = dt.strftime("%d-%m-%Y")
         hora = dt.strftime("%H:%M")
-        data_hora = f"{data} {hora}"
-        ts = int(dt.timestamp())
 
-        return {"data": data, "hora": hora, "data_hora": data_hora, "timestamp": ts}
-    
+        return {
+            "date": data,
+            "time": hora,
+            "date_time": f"{data} {hora}",
+            "timestamp": int(dt.timestamp()),
+        }
