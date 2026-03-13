@@ -28,8 +28,6 @@ async def async_setup_entry(hass, entry, async_add_entities):
 
 
 class EdenredBalanceSensor(CoordinatorEntity, SensorEntity):
-    """Sensor de Saldo do Cartão Edenred."""
-
     _attr_icon = "mdi:credit-card"
     _attr_native_unit_of_measurement = "EUR"
 
@@ -41,12 +39,10 @@ class EdenredBalanceSensor(CoordinatorEntity, SensorEntity):
 
     @property
     def native_value(self) -> Any:
-        """Saldo disponível do cartão."""
         return self.coordinator.data[self.card_id]["details"]["account"]["availableBalance"]
 
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None:
-        """Atributos adicionais do cartão no sensor de saldo."""
         card = self.coordinator.data[self.card_id].get("card", {}) or {}
         product = card.get("product") or {}
         return {
@@ -58,8 +54,6 @@ class EdenredBalanceSensor(CoordinatorEntity, SensorEntity):
 
 
 class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
-    """Sensor do Último Movimento do Cartão Edenred."""
-
     _attr_icon = "mdi:swap-horizontal"
     _attr_native_unit_of_measurement = "EUR"
 
@@ -71,43 +65,46 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
 
     @property
     def native_value(self) -> Any:
-        """Valor (amount) do último movimento."""
-        mov = self.coordinator.data[self.card_id]["details"].get("movementList", [])
-        if mov:
-            return mov[0].get("amount")
-        return None
+        """Valor do último movimento != 0."""
+        mov_list = self.coordinator.data[self.card_id]["details"].get("movementList", [])
+        filtered = [m for m in mov_list if m.get("amount") != 0]
+
+        if not filtered:
+            return None  # Sem movimentos válidos
+
+        return filtered[0].get("amount")
 
     @property
     def extra_state_attributes(self) -> dict[str, Any] | None:
-        """Atributos do último movimento + lista completa formatada."""
         mov_list = self.coordinator.data[self.card_id]["details"].get("movementList", [])
-        if not mov_list:
+
+        # Filtrar movimentos amount != 0
+        filtered = [m for m in mov_list if m.get("amount") != 0]
+
+        if not filtered:
             return None
 
-        # Movimento mais recente
-        latest = mov_list[0]
+        # Movimento mais recente válido
+        latest = filtered[0]
 
         # Categoria + abreviatura
         latest_category = (latest.get("category") or {}).get("description")
         latest_cat = self._cat_abbrev(latest_category)
 
-        # Tipo triangular ▲ / ▼
+        # Tipos
         latest_type = self._movement_type(latest.get("amount"))
-
-        # Novo atributo: círculo colorido 🟢 / 🔴
         latest_t = self._movement_circle(latest.get("amount"))
 
-        # Data/hora
+        # Datas
         latest_dt = self._parse_transaction_dt(latest.get("transactionDate"))
         latest_formats = self._format_dt(latest_dt)
 
         # Texto limpo
         latest_desc = self._clean_description(latest.get("transactionName", ""))
 
-        # Lista completa formatada
+        # Lista completa com movimentos ≠ 0
         movements: list[dict[str, Any]] = []
-        for mov in mov_list:
-
+        for mov in filtered:
             mov_category = (mov.get("category") or {}).get("description")
             mov_cat = self._cat_abbrev(mov_category)
             mov_type = self._movement_type(mov.get("amount"))
@@ -119,18 +116,14 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
             movements.append(
                 {
                     "transactionDate": mov.get("transactionDate"),
-
                     "date": mov_formats["date"],
                     "time": mov_formats["time"],
                     "date_time": mov_formats["date_time"],
                     "timestamp": mov_formats["timestamp"],
-
                     "category": mov_category,
                     "cat": mov_cat,
-
-                    "type": mov_type,   # ▲ / ▼
-                    "t": mov_t,         # 🟢 / 🔴
-
+                    "type": mov_type,
+                    "t": mov_t,
                     "description": self._clean_description(mov.get("transactionName", "")),
                     "amount": mov.get("amount"),
                     "balance_after": mov.get("balance"),
@@ -139,21 +132,16 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
 
         return {
             "transactionDate": latest.get("transactionDate"),
-
             "date": latest_formats["date"],
             "time": latest_formats["time"],
             "date_time": latest_formats["date_time"],
             "timestamp": latest_formats["timestamp"],
-
             "category": latest_category,
             "cat": latest_cat,
-
-            "type": latest_type,  # ▲ / ▼
-            "t": latest_t,        # 🟢 / 🔴
-
+            "type": latest_type,
+            "t": latest_t,
             "description": latest_desc,
             "balance_after": latest.get("balance"),
-
             "movements": movements,
         }
 
@@ -171,7 +159,6 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
 
     @classmethod
     def _cat_abbrev(cls, category: str | None) -> str | None:
-        """Abreviatura (3 letras) sem acentos; 'Crédito' → 'CRD'."""
         if not category:
             return None
         c_norm = cls._remove_accents(category).strip().upper()
@@ -181,14 +168,12 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
 
     @staticmethod
     def _movement_type(amount: float | None) -> str | None:
-        """▲ se positivo / ▼ se negativo."""
         if amount is None:
             return None
         return "▲" if amount > 0 else "▼"
 
     @staticmethod
     def _movement_circle(amount: float | None) -> str | None:
-        """🟢 se positivo / 🔴 se negativo."""
         if amount is None:
             return None
         return "🟢" if amount > 0 else "🔴"
