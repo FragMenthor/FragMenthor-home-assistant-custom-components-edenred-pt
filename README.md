@@ -22,7 +22,7 @@ Integração para obter saldos e movimentos dos cartões **Edenred Portugal** di
 
 ## 📦 Instalação via HACS
 
-1. Em **HACS → Custom repositories**, adicionar `https://github.com/FragMenthor/home-assistant-custom-components-edenred-pt`
+1. Em **HACS → Custom repositories**, adicionar `[https://github.com/FragMenthor/home-assistant-custom-components-edenred-pt](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/)`
 2. Tipo: **Integration**
 3. Instalar e reiniciar o Home Assistant
 
