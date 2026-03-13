@@ -1,12 +1,18 @@
 {
   "domain": "edenred_pt",
   "name": "Edenred Portugal",
-  "version": "1.1.0",
-  "documentation": "https://github.com/FragMenthor/home-assistant-custom-components-edenred_pt",
-  "requirements": [],
-  "codeowners": [
-    "@FragMenthor"
-  ],
+  "version": "1.1.1",
+  "documentation": "https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt",
+  "issue_tracker": "https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/issues",
+  "codeowners": ["@FragMenthor"],
+  "config_flow": true,
+  "integration_type": "hub",
   "iot_class": "cloud_polling",
-  "config_flow": true
+  "requirements": [],
+  "assets": {
+    "integration": {
+      "icon": "custom_components/edenred_pt/icon.png",
+      "logo": "custom_components/edenred_pt/logo.png"
+    }
+  }
 }
