@@ -7,7 +7,7 @@
 ![HACS Badge](https://img.shields.io/badge/HACS-Custom-orange.svg)
 ![License](https://img.shields.io/github/license/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt)
 ![Release](https://img.shields.io/github/v/release/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt)
-![Language](https://img.shields.io/badge/language-PT-green)
+![Language](https://img.shields.io/badge/language-PT-white)
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
 
