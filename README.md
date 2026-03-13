@@ -2,6 +2,8 @@
   <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/main/custom_components/edenred_pt/logo.png" alt="Edenred Portugal" width="500">
 </p>
 
+# Edenred PT — Integração para Home Assistant
+
 <p align="left">
 
   <!-- HACS (Custom Repo) -->
@@ -14,7 +16,7 @@
     <img src="https://img.shields.io/github/license/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge">
   </a>
 
-  <!-- Release -->
+  <!-- Latest Release -->
   <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/releases">
     <img src="https://img.shields.io/github/v/release/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&color=blue">
   </a>
@@ -24,10 +26,8 @@
     <img src="https://img.shields.io/github/downloads/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/total?style=for-the-badge&color=green">
   </a>
 
-  <!-- Python version -->
-  <a href="#">
-    <img src="https://img.shields.io/badge/Python-3.11+-blue.svg?style=for-the-badge&logo=python&logoColor=white">
-  </a>
+  <!-- Python Version -->
+  <img src="https://img.shields.io/badge/Python-3.11+-blue.svg?style=for-the-badge&logo=python&logoColor=white">
 
   <!-- Works with Home Assistant -->
   <a href="https://www.home-assistant.io/">
@@ -35,9 +35,10 @@
   </a>
 
   <!-- API Reverse Engineered -->
-  <a href="#">
-    <img src="https://img.shields.io/badge/API-Reverse%E2%80%91Engineered-red.svg?style=for-the-badge&logo=hackerone&logoColor=white">
-  </a>
+  <img src="https://img.shields.io/badge/API-Reverse%E2%80%91Engineered-red.svg?style=for-the-badge&logo=hackerone&logoColor=white">
+
+  <!-- LANGUAGE PT (novo) -->
+  <img src="https://img.shields.io/badge/LANGUAGE-PT-white.svg?style=for-the-badge&logo=googletranslate&logoColor=white">
 
   <!-- Stars -->
   <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/stargazers">
@@ -50,14 +51,6 @@
   </a>
 
 </p>
-
-
-# Edenred PT — Integração para Home Assistant
-
-![HACS Badge](https://img.shields.io/badge/HACS-Custom-orange)
-![License](https://img.shields.io/github/license/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt)
-![Release](https://img.shields.io/github/v/release/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt)
-![Language](https://img.shields.io/badge/language-PT-white)
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
 
