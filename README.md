@@ -2,6 +2,38 @@
   <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/main/custom_components/edenred_pt/logo.png" alt="Edenred Portugal" width="500">
 </p>
 
+
+<p align="left">
+
+  <!-- HACS (Custom Repo) -->
+  <a href="https://hacs.xyz/">
+    https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge&logo=homeassistant&logoColor=white
+  </a>
+
+  <!-- License -->
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/blob/main/LICENSE">
+    https://img.shields.io/github/license/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge
+  </a>
+
+  <!-- Release -->
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/releases">
+    https://img.shields.io/github/v/release/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&color=blue
+  </a>
+
+  <!-- Stars -->
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/stargazers">
+    https://img.shields.io/github/stars/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&logo=github
+  </a>
+
+  <!-- Issues -->
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/issues">
+    https://img.shields.io/github/issues/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&color=yellow
+  </a>
+
+</p>
+
+
+
 # Edenred PT — Integração para Home Assistant
 
 ![HACS Badge](https://img.shields.io/badge/HACS-Custom-orange)
