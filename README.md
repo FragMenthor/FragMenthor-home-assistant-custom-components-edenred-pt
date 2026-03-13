@@ -17,7 +17,7 @@ Integração para obter saldos e movimentos dos cartões **Edenred Portugal** di
 - Token temporário armazenado em memória
 - Suporte para **vários cartões**
 - Atualização configurável (e reconfigurável): **15 min a 12 horas**
-- Sensor de saldo por cartão
+- Sensor de saldo por cartão, com dados do cartão em atributos
 - Sensor de último movimento (com atributos completos e histórico de movimentos)
 - Compatível com **HACS (Custom Repo)**
 - Serviço `edenred_pt.force_update` para forçar atualização de dados
@@ -42,7 +42,7 @@ Para cada cartão são criados dois sensores:
 - `sensor.edenred_<id>_ultimo_movimento`
 
 Atributos do último movimento:
-- `date`, `description`, `category`, `balance_after` e `movements`
+- `transaction_date`, `date`, `time`, `date_time`, `description`, `category`, `cat` (abreviatura), `type` (símbolo), `t` (ícone colorido), `balance_after` e `movements` (lista de movimentos, com `amount`).
 
 ## 📜 Licença
 
