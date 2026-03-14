@@ -51,15 +51,14 @@
   </a>
 
   <!-- Last Commit -->
-  https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/commits/main
-    https://img.shields.io/github/last-commit/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&color=lightgrey&logo=github
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/commits/main">
+    <img src="https://img.shields.io/github/last-commit/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&amp;color=lightgrey">
   </a>
 
   <!-- Code Size -->
-  https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt
-    https://img.shields.io/github/languages/code-size/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&color=purple&logo=github
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt">
+    <img src="https://img.shields.io/github/languages/code-size/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&amp;color=purple">
   </a>
-
 </p>
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
