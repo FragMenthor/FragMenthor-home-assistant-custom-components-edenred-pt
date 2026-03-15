@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portogallo",
+                "description": "Inserisci le tue credenziali",
+                "data": {
+                    "email": "Email",
+                    "password": "Password",
+                    "interval": "Intervallo di aggiornamento (minuti)"
+                }
+            }
+        }
+    }
+}
