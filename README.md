@@ -31,7 +31,7 @@
 
   <!-- Works with Home Assistant -->
   <a href="https://www.home-assistant.io/">
-    <img src="https://img.shields.io/badge/Works%20with-Home%20Assistant%202025.12+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white">
+    <img src="https://img.shields.io/badge/Works%20with-Home%20Assistant%202026.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white">
   </a>
 
   <!-- API Reverse Engineered -->
