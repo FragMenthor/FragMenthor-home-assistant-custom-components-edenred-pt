@@ -62,7 +62,7 @@
 
   <!-- AI Copilot -->
   <a href="#">
-    <img src="https://img.shields.io/badge/AI%E2%80%91Copilot-%F0%9F%A7%A0-purple.svg?style=for-the-badge">
+    <img src="https://img.shields.io/badge/AI-Copilot-purple.svg?style=for-the-badge">
   </a>
 
 </p>
