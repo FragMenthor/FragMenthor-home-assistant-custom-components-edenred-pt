@@ -60,10 +60,10 @@
     <img src="https://img.shields.io/github/languages/code-size/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&amp;color=purple">
   </a>
 
-<!-- AI Copilot -->
-&lt;a href=&quot;#&quot;&gt;
-  &lt;img src=&quot;https://img.shields.io/badge/AI%E2%80%91Copilot-%F0%9F%A7%A0-purple.svg?style=for-the-badge&quot;&gt;
-&lt;/a&gt;
+  <!-- AI Copilot -->
+  <a href="#">
+    <img src="https://img.shields.io/badge/AI%E2%80%91Copilot-%F0%9F%A7%A0-purple.svg?style=for-the-badge">
+  </a>
 
 </p>
 
