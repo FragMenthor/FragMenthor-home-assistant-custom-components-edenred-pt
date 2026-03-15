@@ -60,11 +60,6 @@
     <img src="https://img.shields.io/github/languages/code-size/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&amp;color=purple">
   </a>
   
-  <!-- AI Copilot -->
-  <a href="#">
-    <img src="https://img.shields.io/badge/AI-Copilot?style=for-the-badge&amp;color=purple"">
-  </a>
-
 </p>
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
