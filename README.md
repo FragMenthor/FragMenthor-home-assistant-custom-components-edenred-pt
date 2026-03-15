@@ -37,7 +37,7 @@
   <!-- API Reverse Engineered -->
   <img src="https://img.shields.io/badge/API-Reverse%E2%80%91Engineered-red.svg?style=for-the-badge&logo=hackerone&logoColor=white">
 
-  <!-- LANGUAGE PT (novo) -->
+  <!-- LANGUAGE PT -->
   <img src="https://img.shields.io/badge/LANGUAGE-PT-white.svg?style=for-the-badge&logo=googletranslate&logoColor=white">
 
   <!-- Stars -->
