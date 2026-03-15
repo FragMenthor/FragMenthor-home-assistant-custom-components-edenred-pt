@@ -11,8 +11,8 @@
   "requirements": [],
   "assets": {
     "integration": {
-      "icon": "custom_components/edenred_pt/icon.png",
-      "logo": "custom_components/edenred_pt/logo.png"
+      "icon": "custom_components/edenred_pt/brand/icon.png",
+      "logo": "custom_components/edenred_pt/brand/logo.png"
     }
   }
 }
