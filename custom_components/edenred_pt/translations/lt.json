@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugalija",
+                "description": "Įveskite savo prisijungimo duomenis",
+                "data": {
+                    "email": "El. paštas",
+                    "password": "Slaptažodis",
+                    "interval": "Atnaujinimo intervalas (minutėmis)"
+                }
+            }
+        }
+    }
+}

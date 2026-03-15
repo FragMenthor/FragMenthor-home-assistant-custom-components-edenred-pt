@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugal",
+                "description": "Indtast dine legitimationsoplysninger",
+                "data": {
+                    "email": "Email",
+                    "password": "Adgangskode",
+                    "interval": "Opdateringsinterval (minutter)"
+                }
+            }
+        }
+    }
+}

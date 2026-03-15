@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugāle",
+                "description": "Ievadiet savus pieteikšanās datus",
+                "data": {
+                    "email": "E-pasts",
+                    "password": "Parole",
+                    "interval": "Atjaunināšanas intervāls (minūtēs)"
+                }
+            }
+        }
+    }
+}

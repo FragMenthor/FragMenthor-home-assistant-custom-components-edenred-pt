@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugalska",
+                "description": "Vnesite svoje prijavne podatke",
+                "data": {
+                    "email": "E-pošta",
+                    "password": "Geslo",
+                    "interval": "Interval posodobitve (minute)"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugal",
+                "description": "Sisestage oma kasutajatunnused",
+                "data": {
+                    "email": "E-post",
+                    "password": "Parool",
+                    "interval": "Värskendamise intervall (minutites)"
+                }
+            }
+        }
+    }
+}

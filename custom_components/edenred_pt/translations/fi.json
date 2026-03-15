@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugali",
+                "description": "Anna kirjautumistietosi",
+                "data": {
+                    "email": "Sähköposti",
+                    "password": "Salasana",
+                    "interval": "Päivitysväli (minuutteina)"
+                }
+            }
+        }
+    }
+}
