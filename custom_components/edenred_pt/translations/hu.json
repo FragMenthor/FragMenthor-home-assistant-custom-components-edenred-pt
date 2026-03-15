@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugália",
+                "description": "Adja meg a bejelentkezési adatait",
+                "data": {
+                    "email": "Email",
+                    "password": "Jelszó",
+                    "interval": "Frissítési időköz (perc)"
+                }
+            }
+        }
+    }
+}

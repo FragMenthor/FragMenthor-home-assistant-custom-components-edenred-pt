@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portugalia",
+                "description": "Introduceți datele dvs. de conectare",
+                "data": {
+                    "email": "Email",
+                    "password": "Parolă",
+                    "interval": "Interval de actualizare (minute)"
+                }
+            }
+        }
+    }
+}

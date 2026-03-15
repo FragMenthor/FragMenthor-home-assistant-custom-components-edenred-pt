@@ -1,0 +1,15 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "title": "Edenred Portekiz",
+                "description": "Giriş bilgilerinizi girin",
+                "data": {
+                    "email": "E-posta",
+                    "password": "Şifre",
+                    "interval": "Güncelleme aralığı (dakika)"
+                }
+            }
+        }
+    }
+}
