@@ -6,6 +6,11 @@
 
 <p align="left">
 
+  <!-- Works with Home Assistant -->
+  <a href="https://www.home-assistant.io/">
+    <img src="https://img.shields.io/badge/Home%20Assistant%202026.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white">
+  </a>
+
   <!-- HACS (Custom Repo) -->
   <a href="https://hacs.xyz/">
     <img src="https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge&logo=homeassistant&logoColor=white">
@@ -28,11 +33,6 @@
 
   <!-- Python Version -->
   <img src="https://img.shields.io/badge/Python-3.11+-blue.svg?style=for-the-badge&logo=python&logoColor=white">
-
-  <!-- Works with Home Assistant -->
-  <a href="https://www.home-assistant.io/">
-    <img src="https://img.shields.io/badge/Works%20with-Home%20Assistant%202026.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white">
-  </a>
 
   <!-- API Reverse Engineered -->
   <img src="https://img.shields.io/badge/API-Reverse%E2%80%91Engineered-red.svg?style=for-the-badge&logo=hackerone&logoColor=white">
