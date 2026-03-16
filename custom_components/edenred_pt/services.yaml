@@ -1,0 +1,4 @@
+force_update:
+  name: Forçar atualização
+  description: Força a atualização imediata dos dados da Edenred Portugal.
+  fields: {}
