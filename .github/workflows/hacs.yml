@@ -1,21 +1,29 @@
-name: Validate with HACS
+name: Validate Integration
 
 on:
   push:
-    branches:
-      - main
   pull_request:
+  schedule:
+    - cron: "0 0 * * *"   # Corre todos os dias à meia-noite (UTC)
 
 jobs:
-  hacs:
+
+  hacs_validation:
     name: HACS Validation
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: HACS Action
+      - name: Run HACS Action
         uses: hacs/action@22.5.0
 
-      - name: Report success
-        run: echo "HACS validation completed!"
+  hassfest_validation:
+    name: Hassfest Validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run Hassfest
+        uses: home-assistant/actions/hassfest@master
