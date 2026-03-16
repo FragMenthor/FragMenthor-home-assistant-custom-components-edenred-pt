@@ -13,7 +13,7 @@
 
   <!-- HACS (Custom Repo) -->
   <a href="https://hacs.xyz/">
-    <img src="https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge&logo=homeassistant&logoColor=white">
+    <img src="https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge&logo=homeassistantcommunitystore&logoColor=white">
   </a>
 
   <!-- License -->
