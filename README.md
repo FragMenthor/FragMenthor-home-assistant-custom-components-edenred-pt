@@ -62,7 +62,7 @@
 
   <!-- AI Assisted / CoPilot -->
   <a href="#">
-    <img src="https://img.shields.io/badge/AI%20Assisted%20%2F%20CoPilot-purple.svg?style=for-the-badge&amp;logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI0IDE0Yy02IDAtMTEgNS0xMSAxMXYxYy0zIDItNSA1LTUgOSAwIDYgNSAxMSAxMSAxMWg0di02aC0zYy0zIDAtNi0zLTYtNiAwLTIgMS00IDMtNWwyLTF2LTNjMC0zIDItNSA1LTUgMiAwIDQgMSA1IDNsMiAzIDItMyBjMS0yIDMtMyA1LTMgMyAwIDUgMiA1IDV2M2wyIDFjMiAxIDMgMyAzIDUgMCAzLTMgNi02IDZoLTN2Nmg0YzYgMCAxMS01IDExLTExIDAtNC0yLTctNS05di0xYzAtNi01LTExLTExLTExLTMgMC02IDEtOCAzLTItMi01LTMtOC0zeiIvPjwvc3ZnPg==">
+    <img src="https://img.shields.io/badge/AI%20Assisted-CoPilot-purple.svg?style=for-the-badge&amp;logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTI0IDE0Yy02IDAtMTEgNS0xMSAxMXYxYy0zIDItNSA1LTUgOSAwIDYgNSAxMSAxMSAxMWg0di02aC0zYy0zIDAtNi0zLTYtNiAwLTIgMS00IDMtNWwyLTF2LTNjMC0zIDItNSA1LTUgMiAwIDQgMSA1IDNsMiAzIDItMyBjMS0yIDMtMyA1LTMgMyAwIDUgMiA1IDV2M2wyIDFjMiAxIDMgMyAzIDUgMCAzLTMgNi02IDZoLTN2Nmg0YzYgMCAxMS01IDExLTExIDAtNC0yLTctNS05di0xYzAtNi01LTExLTExLTExLTMgMC02IDEtOCAzLTItMi01LTMtOC0zeiIvPjwvc3ZnPg==">
   </a>
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
