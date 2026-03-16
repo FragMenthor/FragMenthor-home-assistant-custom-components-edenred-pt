@@ -1,8 +1,6 @@
 {
   "name": "Edenred Portugal",
   "content_in_root": false,
-  "domains": ["sensor"],
-  "render_readme": true,
-  "homeassistant": "2026.1.0",
-  "iot_class": "cloud_polling"
+  "country": ["PT"],
+  "homeassistant": "2024.8.0",
 }
