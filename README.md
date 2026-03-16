@@ -62,7 +62,7 @@
 
   <!-- AI Assisted / CoPilot -->
   <a href="https://copilot.microsoft.com/">
-    <img src="https://img.shields.io/badge/AI%20Assisted-CoPilot-purple.svg?style=for-the-badge&logo=brain&logoColor=white">
+    <img src="https://img.shields.io/badge/AI%20Assisted-CoPilot-purple.svg?style=for-the-badge&logo=copilot&logoColor=white">
   </a>
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
