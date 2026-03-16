@@ -8,11 +8,5 @@
   "config_flow": true,
   "integration_type": "hub",
   "iot_class": "cloud_polling",
-  "requirements": [],
-  "assets": {
-    "integration": {
-      "icon": "custom_components/edenred_pt/brand/icon.png",
-      "logo": "custom_components/edenred_pt/brand/logo.png"
-    }
-  }
+  "requirements": []
 }
