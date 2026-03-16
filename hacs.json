@@ -1,6 +1,7 @@
 {
   "name": "Edenred Portugal",
   "content_in_root": false,
+  "country": "PT",
   "domains": ["sensor"],
   "render_readme": true,
   "homeassistant": "2026.1.0",
