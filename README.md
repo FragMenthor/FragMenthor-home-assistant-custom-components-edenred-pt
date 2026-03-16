@@ -8,7 +8,7 @@
 
   <!-- Works with Home Assistant -->
   <a href="https://www.home-assistant.io/">
-    <img src="https://img.shields.io/badge/Home%20Assistant%202026.1+-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white">
+    <img src="https://img.shields.io/badge/Home%20Assistant-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white">
   </a>
 
   <!-- HACS (Custom Repo) -->
