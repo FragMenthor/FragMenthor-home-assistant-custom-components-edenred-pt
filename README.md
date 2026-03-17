@@ -65,8 +65,8 @@
     <img src="https://img.shields.io/badge/AI%20Assisted-CoPilot-purple.svg?style=for-the-badge&logo=githubcopilot&logoColor=white">
   </a>
 
-  [![Hassfest Validation Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/HACS.yml?job=validate&label=Hassfest)](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions)
-  [![HACS Validation Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/HACS.yml?job=hacs&label=HACS)](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions)
+  [![Hassfest Validation Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/hacs.yml?job=validate&label=Hassfest)](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions)
+  [![HACS Validation Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/hacs.yml?job=hacs&label=HACS)](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions)
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
 
@@ -109,5 +109,5 @@ MIT License
 
 ## 🔗 Links
 
-* [Hassfest Validation Status](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions) ![Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/HACS.yml?job=validate&label=)
-* [HACS Validation Status](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions) ![Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/HACS.yml?job=hacs&label=)
+* Link to successful HACS action: <https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions/runs/23186436244/job/67371003631>
+* Link to successful hassfest action: <https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions/runs/23186436244/job/67371003608>
