@@ -142,7 +142,7 @@ class EdenredLastMovementSensor(CoordinatorEntity, SensorEntity):
             "symbol": latest_t,
             "description": latest_desc,
             "balance_after": latest.get("balance"),
-            "movements": movements,
+            "transactions": movements,
         }
 
     @staticmethod
