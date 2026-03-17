@@ -57,7 +57,7 @@ Integration to retrieve balances and transactions from **Edenred Portugal** card
 
 ## 🌐 Read this in another language
 
-- PT [Português](README.md)
+- PT [Português](/README.md)
 
 ## ✨ Features
 
