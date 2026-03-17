@@ -67,7 +67,7 @@
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
 
-## 🌐 Ler documentação noutra língua
+## 🌐 Documentação
 
 - EN [English](docs/README.en.md)
 
