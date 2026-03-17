@@ -55,7 +55,7 @@
 Integration to retrieve balances and transactions from **Edenred Portugal** cards directly into Home Assistant.
 
 
-## 🌐 Read this in another language
+## 🌐 Documentation
 
 - PT [Português](/README.md)
 
