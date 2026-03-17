@@ -86,8 +86,8 @@ Integration to retrieve balances and transactions from **Edenred Portugal** card
 
 Two sensors are created for each card:
 
-- `sensor.edenred_<id>_balance`
-- `sensor.edenred_<id>_latest_transaction`
+- `sensor.edenred_<id>_saldo`
+- `sensor.edenred_<id>_ultimo_movimento`
 
 Latest transaction attributes:
 - `transaction_date`, `date`, `time`, `date_time`, `description`, `category`, `cat` _(abbreviation)_, `type` _(icon)_, `symbol` _(colored symbol)_, `balance_after`, and `movements` _[list of transactions, including (_`amount`_)]_.
