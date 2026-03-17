@@ -1,4 +1,4 @@
 force_update:
-  name: Forçar atualização
-  description: Força a atualização imediata dos dados da Edenred Portugal.
+  name: "PT: Forçar atualização Edenred Portugal // EN: Edenred Portugal Force Update"
+  description: "PT: Força a atualização dos dados Edenred Portugal // EN: Forces sensor update for Edenred Portugal"
   fields: {}
