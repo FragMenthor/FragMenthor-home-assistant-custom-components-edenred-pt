@@ -67,6 +67,10 @@
 
 Integração para obter saldos e movimentos dos cartões **Edenred Portugal** diretamente no Home Assistant.
 
+## 🌐 Ler documentação noutra língua
+
+- EN [English](docs/README.en.md)
+
 ## ✨ Funcionalidades
 
 - Login com autenticação por **API NÃO OFICIAL** da Edenred
