@@ -8,5 +8,5 @@
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/issues",
   "requirements": [],
-  "version": "1.2.6"
+  "version": "1.2.7"
 }
