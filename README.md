@@ -104,7 +104,8 @@ Atributos do último movimento:
 
 MIT License
 
-## Links
+## 🔗 Links
 
 Successful HACS action: <https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions/runs/23186436244/job/67371003631>
+
 Successful hassfest action: <https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions/runs/23186436244/job/67371003608>
