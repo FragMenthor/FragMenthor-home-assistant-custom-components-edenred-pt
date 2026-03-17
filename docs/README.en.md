@@ -1,0 +1,104 @@
+<p align="left">
+  <img src="https://raw.githubusercontent.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/main/custom_components/edenred_pt/brand/logo.png" alt="Edenred Portugal" width="500">
+</p>
+
+# Edenred PT — Home Assistant Integration
+
+<p align="left">
+
+  <a href="https://www.home-assistant.io/">
+    <img src="https://img.shields.io/badge/Home%20Assistant-41BDF5?style=for-the-badge&logo=homeassistant&logoColor=white">
+  </a>
+
+  <a href="https://hacs.xyz/">
+    <img src="https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge&logo=homeassistantcommunitystore&logoColor=white">
+  </a>
+
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge">
+  </a>
+
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/releases">
+    <img src="https://img.shields.io/github/v/release/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&color=blue">
+  </a>
+
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/releases">
+    <img src="https://img.shields.io/github/downloads/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/total?style=for-the-badge&color=green">
+  </a>
+
+  <img src="https://img.shields.io/badge/Python-3.11+-blue.svg?style=for-the-badge&logo=python&logoColor=white">
+
+  <img src="https://img.shields.io/badge/API-Reverse%E2%80%91Engineered-red.svg?style=for-the-badge&logo=hackerone&logoColor=white">
+
+  <img src="https://img.shields.io/badge/LANGUAGE-PT-white.svg?style=for-the-badge&logo=googletranslate&logoColor=white">
+
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/stargazers">
+    <img src="https://img.shields.io/github/stars/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&logo=github">
+  </a>
+
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/issues">
+    <img src="https://img.shields.io/github/issues/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&color=yellow">
+  </a>
+
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/commits/main">
+    <img src="https://img.shields.io/github/last-commit/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&amp;color=lightgrey">
+  </a>
+
+  <a href="https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt">
+    <img src="https://img.shields.io/github/languages/code-size/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt?style=for-the-badge&amp;color=purple">
+  </a>
+
+  <a href="https://copilot.microsoft.com/">
+    <img src="https://img.shields.io/badge/AI%20Assisted-CoPilot-purple.svg?style=for-the-badge&logo=githubcopilot&logoColor=white">
+  </a>
+
+Integration to retrieve balances and transactions from **Edenred Portugal** cards directly into Home Assistant.
+
+
+## 🌐 Read this in another language
+
+- PT [Português](docs/README.pt.md)
+
+## ✨ Features
+
+- Login via **UNOFFICIAL API** from Edenred
+- Temporary token stored in memory
+- Support for **multiple cards**
+- Configurable (and reconfigurable) update interval: **15 min to 12 hours**
+- Balance sensor per card, with card data in attributes
+- Latest transaction sensor (with full attributes and transaction history)
+- **HACS (Custom Repo)** compatible
+- `edenred_pt.force_update` service to manually trigger data updates
+
+## 📦 Installation via HACS
+
+1. In **HACS → Custom repositories**, add `https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt`
+2. Type: **Integration**
+3. Install and restart Home Assistant
+
+## 🔧 Configuration
+
+1. **Settings → Devices & Services → Add Integration**
+2. Search for **Edenred Portugal**
+3. Enter Email, Password, and Update interval (15–720 min)
+
+## 🧩 Created Sensors
+
+Two sensors are created for each card:
+
+- `sensor.edenred_<id>_balance`
+- `sensor.edenred_<id>_latest_transaction`
+
+Latest transaction attributes:
+- `transaction_date`, `date`, `time`, `date_time`, `description`, `category`, `cat` _(abbreviation)_, `type` _(icon)_, `symbol` _(colored symbol)_, `balance_after`, and `movements` _[list of transactions, including (_`amount`_)]_.
+
+## 📜 License
+
+MIT License
+
+## 🔗 Links
+  [![Hassfest Validation Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/hacs.yml?job=validate&label=Hassfest)](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions)
+  [![HACS Validation Status](https://img.shields.io/github/actions/workflow/status/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/hacs.yml?job=hacs&label=HACS)](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions)
+  
+* [Successful HACS action](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions/runs/23186436244/job/67371003631)
+* [Successful hassfest action](https://github.com/FragMenthor/FragMenthor-home-assistant-custom-components-edenred-pt/actions/runs/23186436244/job/67371003608)
